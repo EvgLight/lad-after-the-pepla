@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>После пепла — книга-руководство Евгении Легкой</title>
+
+<style>
+  :root{
+    --bg:#141210; --bg2:#1b1916; --card:#221f1b; --card2:#26221d;
+    --gold:#e2b76a; --gold2:#caa05a; --text:#ece7df; --muted:#ada596; --line:#3a342c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  img{max-width:100%;height:auto;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif;}
+  .gold{color:var(--gold);}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  section{padding:60px 0;border-bottom:1px solid rgba(58,52,44,.5);}
+  .eyebrow{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-size:12px;}
+  .section-kicker{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:13px;margin-bottom:14px;}
+  h2.h{font-size:33px;line-height:1.15;font-weight:700;margin-bottom:26px;}
+
+  .btn{display:inline-block;background:linear-gradient(180deg,#eec479,#d8a85b);color:#231a0c;
+    font-weight:700;font-size:18px;padding:17px 34px;border-radius:14px;text-decoration:none;
+    box-shadow:0 10px 34px rgba(226,183,106,.28);transition:transform .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-sub{display:block;color:var(--muted);font-size:13px;margin-top:10px;}
+  .price-old{text-decoration:line-through;opacity:.6;font-weight:400;}
+
+  @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(226,183,106,.5),0 10px 30px rgba(226,183,106,.25);}
+    50%{box-shadow:0 0 28px 7px rgba(226,183,106,.55),0 10px 30px rgba(226,183,106,.3);}}
+  .btn-glow{animation:glow 2.2s ease-in-out infinite;}
+
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .badge{background:var(--card);border:1px solid var(--line);border-radius:30px;padding:7px 14px;font-size:13px;color:var(--muted);}
+  .badge b{color:var(--gold);font-weight:600;}
+
+  .curwrap{margin:14px auto 0;max-width:560px;}
+  .curbtn{background:transparent;border:1px solid var(--gold2);color:var(--gold);border-radius:30px;
+    padding:11px 22px;font-size:15px;cursor:pointer;transition:background .15s;}
+  .curbtn:hover{background:rgba(226,183,106,.1);}
+  .curpanel{display:none;margin-top:14px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 20px 14px;text-align:left;}
+  .curpanel.open{display:block;}
+  .curpanel .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:16px;}
+  .curpanel .row:last-child{border-bottom:none;}
+  .curpanel .row b{color:var(--gold);font-family:Georgia,serif;}
+  .curpanel .src{color:#8b8478;font-size:12px;margin-top:10px;text-align:center;}
+
+  .ctaband{text-align:center;background:linear-gradient(180deg,#211c15,#1a1713);}
+  .ctaband h3{font-family:Georgia,serif;font-size:24px;margin-bottom:18px;}
+
+  .hero{padding-top:46px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;}
+  .hero h1{font-size:60px;line-height:1.0;font-weight:700;margin:14px 0 10px;}
+  .hero .subh{font-size:22px;color:var(--text);margin-bottom:20px;font-family:Georgia,serif;}
+  .hero .quote{border-left:3px solid var(--gold);padding:10px 18px;margin:0 0 24px;
+    background:rgba(226,183,106,.06);color:var(--text);font-style:italic;font-size:18px;}
+  .hero img{width:100%;border-radius:18px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.55);}
+
+  .promo{background:linear-gradient(180deg,#2a2114,#221b12);border-top:1px solid var(--gold2);
+    border-bottom:1px solid var(--gold2);padding:18px 0;text-align:center;}
+  .promo b{color:var(--gold);}
+
+  .intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  .intro-grid img{width:100%;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.5);}
+  .mech p{margin-bottom:14px;}
+  .mech .big{font-size:19px;}
+
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .check{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+    display:flex;gap:12px;align-items:flex-start;}
+  .check .v{color:var(--gold);font-weight:700;flex:0 0 auto;}
+  .bridge{margin-top:24px;font-size:19px;}
+
+  .author-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center;}
+  .author-grid img{width:100%;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.5);}
+  .author ul{list-style:none;margin:18px 0;}
+  .author li{padding:6px 0;}
+  .author li b{color:var(--gold);}
+  .author .q{border-left:3px solid var(--gold);padding:14px 20px;margin-top:18px;
+    background:rgba(226,183,106,.06);font-style:italic;}
+
+  .lessons{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;}
+  .lesson .n{font-family:Georgia,serif;color:var(--gold);font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .lesson h3{font-size:20px;margin-bottom:10px;}
+  .lesson p{color:var(--muted);font-size:15px;}
+
+  .res-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;}
+  .res-grid img{width:100%;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.5);}
+  .res-list{list-style:none;}
+  .res-list li{padding:11px 0 11px 32px;position:relative;border-bottom:1px solid var(--line);}
+  .res-list li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700;}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .step .num{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);
+    font-family:Georgia,serif;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .step h3{font-size:17px;margin-bottom:7px;}
+  .step p{color:var(--muted);font-size:14px;}
+
+  .offer{background:linear-gradient(180deg,#241f17,#1b1814);border:1px solid var(--gold2);
+    border-radius:20px;padding:44px;text-align:center;}
+  .offer .stack{display:inline-block;text-align:left;margin:8px auto 18px;color:var(--muted);}
+  .offer .stack li{padding:4px 0;list-style:none;}
+  .offer .stack li::before{content:"✓ ";color:var(--gold);}
+  .offer .price{font-family:Georgia,serif;font-size:54px;color:var(--gold);margin:6px 0 4px;}
+  .pay{background:rgba(226,183,106,.07);border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;margin:18px auto 22px;max-width:620px;font-size:15px;color:var(--text);}
+  .pay b{color:var(--gold);}
+  .offer .note{color:var(--muted);font-size:14px;margin-top:12px;}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 22px;margin-bottom:12px;}
+  details summary{cursor:pointer;padding:18px 0;font-weight:700;font-size:17px;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:"+";color:var(--gold);font-size:24px;}
+  details[open] summary::after{content:"–";}
+  details p{padding:0 0 20px;color:var(--muted);}
+
+  .ps{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:26px 30px;}
+  .ps b{color:var(--gold);}
+
+  .final{text-align:center;}
+  .final h2{font-size:33px;max-width:820px;margin:0 auto 14px;line-height:1.2;}
+  .final .s{color:var(--muted);margin-bottom:26px;}
+
+  footer{color:#8b8478;font-size:13px;line-height:1.6;padding:34px 0 60px;text-align:center;}
+  footer .wrap{max-width:780px;}
+  footer a{color:#a99f8f;}
+
+  @media(max-width:860px){
+    body{font-size:18px;}
+    .hero-grid,.author-grid,.intro-grid,.res-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:42px;}
+    .hero .subh{font-size:20px;}
+    .checks,.lessons,.steps{grid-template-columns:1fr;}
+    h2.h{font-size:26px;}
+    .order-img{order:-1;}
+    .lesson p{font-size:16px;}
+    .step p{font-size:15px;}
+    .badge{font-size:14px;}
+    .pay{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Практическое руководство от Евгении Легкой</span>
+      <h1> <span class="gold"></span></h1>
+      <p class="subh">Как пережить предательство, спасти себя от разрушения и собрать самооценку заново</p>
+      <p class="quote">«Он ушел к другой, оставив меня с долгами и детьми. Кажется, что жизнь кончена» — это про тебя?</p>
+      
+      <!-- ЗДЕСЬ ССЫЛКА НА ПРОДАМУС -->
+      <a class="btn btn-glow" href="ТВОЯ_ССЫЛКА_НА_ПРОДАМУС" target="_blank" rel="noopener">Забрать  за $20 <span class="price-old">$49.</span></a>
+      
+      <span class="btn-sub">Дешевле 15 минут у психотерапевта · + бонус «Аптечка на тяжёлую ночь»</span>
+      <div class="badges">
+        <span class="badge">📖 <b>5 терапевтических глав</b></span>
+        <span class="badge">📩 <b>Сразу на вашу почту</b></span>
+        <span class="badge">💳 Оплата из любой страны</span>
+      </div>
+    </div>
+    <div class="order-img"><img src="cover.png" width="1100" height="730" alt="Книга После Пепла" decoding="async"></div>
+  </div>
+</section>
+
+<!-- ============ 2. БОНУС-ПРОМО ============ -->
+<div class="promo">
+  <div class="wrap">При покупке сейчас — <b>БОНУС:</b> практическое руководство «Аптечка скорой помощи на тяжёлую ночь» в подарок</div>
+</div>
+
+<!-- ============ 3. ВВОДНЫЙ ТЕКСТ + МЕХАНИЗМ ============ -->
+<section>
+  <div class="wrap intro-grid">
+    <div class="mech">
+      <h2 class="h">Ты поймешь истинную причину его ухода, снимешь с себя вину и остановишь панику</h2>
+      <p>Тебе говорят «время лечит», «забудь его» и «ради детей надо быть сильной». А ты чувствуешь ледяной ужас. Никто из них не понимает масштабов твоей личной катастрофы.</p>
+      <p class="big">Эта книга — твой <span class="gold">маяк в самой темной точке</span>. Мы спустимся на самое дно твоей боли, разберем его предательство, фантом «той другой», страх безденежья и чувство вины.</p>
+      <p>Мы не будем делать вид, что ничего не произошло. <b class="gold">Мы вытащим тебя из этого ада, и ты построишь новый фундамент. Тот, который никто не сможет выбить из-под ног.</b></p>
+    </div>
+    <div class="order-img"><img src="Golden.gif" width="1100" height="622" alt="" loading="lazy" decoding="async"></div>
+  </div>
+</section>
+
+<!-- ============ 4. ЧЕК-ЛИСТ ============ -->
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Эта книга для тебя, если</p>
+    <h2 class="h">Узнаёшь хотя бы половину?</h2>
+    <div class="checks">
+      <div class="check"><span class="v">✓</span><span>Днем ты тащишь на себе быт, детей и работу, а ночью тихо воешь в ванной от обиды и страха</span></div>
+      <div class="check"><span class="v">✓</span><span>Твоя самооценка разбита: кажется, что тебя просто использовали, выжали до капли и выбросили</span></div>
+      <div class="check"><span class="v">✓</span><span>Заходишь на страницу его новой женщины и сжираешь себя мыслями «чем она лучше меня?»</span></div>
+      <div class="check"><span class="v">✓</span><span>Тебя душит чувство вины: «если бы я была более ласковой, понимающей, он бы не ушел»</span></div>
+      <div class="check"><span class="v">✓</span><span>Панически боишься финансовых проблем, долгов и того, что не сможешь поднять детей одна</span></div>
+      <div class="check"><span class="v">✓</span><span>Ты не знаешь, как объяснить уход отца детям так, чтобы не сломать им психику</span></div>
+      <div class="check"><span class="v">✓</span><span>Днем ты желаешь ему расплаты, а ночью мечтаешь, чтобы он приполз на коленях и всё вернул</span></div>
+      <div class="check"><span class="v">✓</span><span>Устала от дежурных советов подруг — тебе нужен пошаговый план спасения своей жизни</span></div>
+    </div>
+    <p class="bridge">Если узнала себя — с тобой всё нормально. Твоя реакция — это реакция человека, которому воткнули нож в спину. И из этого состояния есть маршрут наружу.</p>
+  </div>
+</section>
+
+<!-- ============ 5. ОБ АВТОРЕ ============ -->
+<section class="author">
+  <div class="wrap author-grid">
+    <img src="web-mark.jpg" width="1000" height="747" alt="Евгения Легкая" loading="lazy" decoding="async">
+    <div>
+      <p class="eyebrow">— Об авторе —</p>
+      <h2 class="h" style="margin:12px 0 8px;">Я знаю температуру этого ледяного дна</h2>
+      <p>Меня зовут <b>Евгения Легкая</b>, я эксперт по восстановлению самооценки после сложных разводов.</p>
+      <ul>
+        <li>➔ <b>Я не теоретик.</b> Мой путь к себе пролегал через руины трех разрушенных браков.</li>
+        <li>➔ <b>Я знаю, что такое паника.</b> Когда второй муж ушел, оставив меня с 2 детьми, астрономическими долгами и без жилья, я собирала свою жизнь буквально по осколкам.</li>
+        <li>➔ <b>Сейчас</b> — я владелица премиум-бренда косметики «Glut me», счастливая женщина, чьи дети выросли прекрасными людьми и получили высшее образование.</li>
+      </ul>
+      <p>Я написала эту книгу, чтобы стать для тебя той самой подругой, которой мне так отчаянно не хватало в мое самое темное время.</p>
+      <p class="q">«Я хочу, чтобы, читая эти страницы, ты знала: перед тобой слова женщины, которая прошла через твой ад, выжила и точно знает, что после пепла начинается самая красивая, сильная и настоящая жизнь.»</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. ПРОГРАММА ============ -->
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Оглавление</p>
+    <h2 class="h">Что тебя ждет внутри: 5 глав + Аптечка</h2>
+    <div class="lessons">
+      <div class="lesson"><div class="n">Глава 1</div><h3>Фантом «другой женщины»</h3><p>Снятие иллюзий. Почему мужчины уходят не к тем, кто «лучше». Разбираем анатомию его побега и избавляемся от комплекса неполноценности.</p></div>
+      <div class="lesson"><div class="n">Глава 2</div><h3>Ледяной ужас реальности</h3><p>Финансы, долги, кредиты и дети. Правило «кислородной маски». Как перевести страх в математику и экологично оградить детей от травмы.</p></div>
+      <div class="lesson"><div class="n">Глава 3</div><h3>Травматическая привязанность</h3><p>Почему ты пьешь яд и ждешь его возвращения. Жажда мести, иллюзия закрытия гештальта, цифровое самоповреждение (слежка) и как начать детокс.</p></div>
+      <div class="lesson"><div class="n">Глава 4</div><h3>Синдром списанной вещи</h3><p>Как вернуть себе свое отражение в зеркале. Очищаем самооценку от его предательства. Развенчиваем иллюзию «потраченных лет» и возвращаем тело.</p></div>
+      <div class="lesson"><div class="n">Глава 5</div><h3>Точка невозврата</h3><p>Как сбросить крест обиды. Прощение самого главного человека — себя. Твой новый фундамент, на котором никто больше не вытрет о тебя ноги.</p></div>
+      <div class="lesson"><div class="n">Бонус</div><h3>Кризисная «Аптечка»</h3><p>4 экстренные техники скорой помощи. Что делать прямо сейчас, ночью, когда накрыла паническая атака, душат слезы или невыносимо тянет ему написать.</p></div>
+    </div>
+    <p style="margin-top:28px;font-size:18px;color:var(--text);max-width:780px;">Это не просто текст. Это <b class="gold">обволакивающая, глубокая кризисная терапия</b>. Книга, которая будет держать тебя за руку, снимать чувство вины и восстанавливать твою ценность с каждой перевернутой страницей.</p>
+  </div>
+</section>
+
+<!-- ============ 7. РЕЗУЛЬТАТЫ ============ -->
+<section>
+  <div class="wrap res-grid">
+    <div>
+      <p class="section-kicker">Результаты</p>
+      <h2 class="h">Что изменится после прочтения</h2>
+      <ul class="res-list">
+        <li>Перестанешь сравнивать себя с его новой женщиной и поймешь суть его побега</li>
+        <li>Справишься с паникой из-за навалившихся финансов и долгов</li>
+        <li>Сможешь экологично объяснить ситуацию детям, не травмируя их психику</li>
+        <li>Вырвешься из травматической зависимости и прекратишь слежку в соцсетях</li>
+        <li>Простишь себя за допущенные ошибки и вернешь доверие к себе</li>
+        <li>Сбросишь клеймо «брошенной жены» и обретешь внутренний стержень</li>
+        <li>Файлы навсегда с тобой — перечитывай в любой момент, когда станет тяжело</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. КАК ПРОХОДИТ ПОКУПКА ============ -->
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Формат</p>
+    <h2 class="h">Всё просто, анонимно и быстро</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Оплата</h3><p>Через надежную систему Продамус. Любой картой (РФ, СНГ, Европа) или по СБП. Всё официально и безопасно.</p></div>
+      <div class="step"><div class="num">2</div><h3>Почта</h3><p>При оплате вы указываете свой Email. Сразу после успешной транзакции письмо с книгой отправится к вам.</p></div>
+      <div class="step"><div class="num">3</div><h3>Удобный формат</h3><p>Можно читать и слушать с телефона или планшета.</p></div>
+      <div class="step"><div class="num">4</div><h3>Доступ навсегда</h3><p>Файлы остаются с вами навсегда, без подписок и скрытых платежей.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA-БАНД ============ -->
+<section class="ctaband">
+  <div class="wrap">
+    <h3>Хватит проживать одну и ту же черную ночь по кругу</h3>
+    <!-- ЗДЕСЬ ССЫЛКА НА ПРОДАМУС -->
+    <a class="btn btn-glow" href="ТВОЯ_ССЫЛКА_НА_ПРОДАМУС" target="_blank" rel="noopener">Читать книгу — $20</a>
+  </div>
+</section>
+
+<!-- ============ 9. ОТЗЫВЫ ============ -->
+<section>
+  <div class="wrap" style="text-align:center;">
+    <p class="section-kicker" style="text-align:center;">Честно</p>
+    <h2 class="h">Здесь будут реальные отзывы — без фальши</h2>
+    <p style="max-width:680px;margin:0 auto;color:var(--text);font-size:18px;">Я не публикую выдуманные переписки и фальшивые скриншоты. В теме разводов и предательства и так слишком много иллюзий, а тебе сейчас нужна опора и честность.</p>
+    <p style="max-width:680px;margin:16px auto 0;color:var(--muted);font-size:17px;">Книга только вышла. Ты можешь стать одной из первых, чью жизнь она изменит. И если она тебе поможет — твой честный (и анонимный) отзыв появится здесь, чтобы помочь другой женщине решиться на спасение себя.</p>
+  </div>
+</section>
+
+<!-- ============ 10. ОФФЕР / ЦЕНА ============ -->
+<section>
+  <div class="wrap">
+    <div class="offer">
+      <p class="section-kicker" style="text-align:center;">Доступ к книге</p>
+      <h2 class="h" style="margin-bottom:10px;">Сколько стоит снова начать дышать спокойно</h2>
+      <ul class="stack">
+        <li>Книга «После пепла» — 5 глубоких терапевтических глав</li>
+        <li>Спецблок: кризисная «Аптечка на тяжёлую ночь»</li>
+        <li>Доставка на Email сразу после оплаты</li>
+      </ul>
+      <div class="price">$20 <span class="price-old" style="font-size:28px;">$49</span></div>
+
+      <div class="curwrap">
+        <button class="curbtn" id="showPrice" type="button">💱 Показать цену в моей валюте</button>
+        <div class="curpanel" id="pricePanel">
+          <div class="row"><span>🇷🇺 Рубли</span><b id="p-rub">…</b></div>
+          <div class="row"><span>🇺🇦 Гривны</span><b id="p-uah">…</b></div>
+          <div class="row"><span>🇰🇿 Тенге</span><b id="p-kzt">…</b></div>
+          <div class="row"><span>🇺🇿 Сум</span><b id="p-uzs">…</b></div>
+          <div class="row"><span>🇪🇺 Евро</span><b id="p-eur">…</b></div>
+          <div class="src">Цена ориентировочная, по курсу ЦБ на сегодня. Спишется в валюте твоей карты.</div>
+        </div>
+      </div>
+
+      <div class="pay">
+        💳 <b>Оплата через Продамус:</b> картой любой страны (Visa, Mastercard, «МИР»). Для РФ доступна быстрая оплата по <b>СБП</b>.<br><br>
+        📩 <b>Сразу после оплаты</b> книга автоматически придет на Email, который вы укажете при оформлении заказа.
+      </div>
+      
+      <!-- ЗДЕСЬ ССЫЛКА НА ПРОДАМУС -->
+      <a class="btn btn-glow" href="ТВОЯ_ССЫЛКА_НА_ПРОДАМУС" target="_blank" rel="noopener" style="margin-top:6px;">Получить книгу — $20</a>
+      <p class="note">Одна цена, без скрытых подписок и допродаж.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. P.S. ============ -->
+<section>
+  <div class="wrap">
+    <div class="ps">
+      <p><b>P.S.</b> Разрушение семьи, предательство и долги ощущаются как конец света. Кажется, что это надо просто перетерпеть, сцепив зубы. Но боль, которую не проживают правильно, остается в теле — паническими атаками, срывами на детях, страхом будущего. Эта книга про то, чтобы пройти этот страшный путь по-настоящему, опереться на мой опыт и выйти из пепла совершенно новой, сильной женщиной. За цену одного недорогого обеда.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. FAQ ============ -->
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Частые вопросы</p>
+    <h2 class="h">Отвечаю честно</h2>
+    <details><summary>У меня нет сил на долгие курсы и домашки. Это курс?</summary><p>Нет, это текстовая книга-руководство. Читается взахлеб, как откровенный разговор с понимающей подругой. Практики из "Аптечки" занимают от 5 до 15 минут и нужны только в момент острой паники.</p></details>
+    <details><summary>Прошел уже год, а мне всё ещё больно. Книга поможет?</summary><p>Да. Если спустя долгое время всё ещё накрывает — это не значит, что с тобой что-то не так. Это значит, что процесс утраты не был прожит, а травматическая привязанность осталась. Книга как раз про то, чтобы вырвать этот корень и отпустить обиду навсегда.</p></details>
+    <details><summary>У нас нет общих долгов и кредитов, но есть измена и уход. Мне подойдет?</summary><p>Абсолютно. Финансовый блок — лишь часть книги. Главный упор сделан на восстановление растоптанной самооценки, снятие чувства вины, работу с иллюзией «другой женщины» и избавление от эмоциональной зависимости.</p></details>
+    <details><summary>Как мне получить книгу после оплаты?</summary><p>На странице оплаты Продамус вы укажете свой адрес электронной почты (Email). Сразу после успешной транзакции на эту почту придет письмо со ссылками на книгу.</p></details>
+    <details><summary>В каком формате придет книга?</summary><p>Вы получите книгу в двух самых удобных форматах: PDF (отлично читается с экрана любого телефона или компьютера) и MP3 (для звукового воспроизведения).</p></details>
+  </div>
+</section>
+
+<!-- ============ 13. ФИНАЛЬНЫЙ CTA ============ -->
+<section class="final">
+  <div class="wrap">
+    <h2>Предательство — это действительно конец. Но очень часто именно на этом пепелище начинаются твои главные отношения. Отношения с самой собой.</h2>
+    <p class="s">Откровенный разговор, который вернет тебе почву под ногами.</p>
+    
+    <!-- ЗДЕСЬ ССЫЛКА НА ПРОДАМУС -->
+    <a class="btn btn-glow" href="ТВОЯ_ССЫЛКА_НА_ПРОДАМУС" target="_blank" rel="noopener">Начать читать — $20</a>
+  </div>
+</section>
+
+<!-- ============ 14. ФУТЕР ============ -->
+<footer>
+  <div class="wrap">
+    Эта книга не заменяет личную терапию или медицинскую помощь. Если прямо сейчас ты в тяжелой депрессии или есть мысли причинить себе вред, пожалуйста, не оставайся с этим один на один, обратись к врачу или на горячую линию психологической поддержки. Ты не должна справляться с этим одна.
+    <br><br>
+    © Евгения Легкая · Восстановление самооценки · <a href="mailto:contact@evgenia.com">77779227936r@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  var PRICE_USD = 20; // <-- Вот здесь мы задаем цену для калькулятора!
+  // Резервные курсы на случай, если сервер ЦБ недоступен
+  var FALLBACK = { usd:90, eur:98, uah:2.2, kzt:0.19, uzs:0.0071 }; 
+  var loaded = false;
+
+  function fmt(n, step){ return (Math.round(n/step)*step).toLocaleString('ru-RU'); }
+
+  function fill(r){
+    var rub = PRICE_USD * r.usd; // Сначала получаем точную цену в рублях
+    document.getElementById('p-rub').textContent = fmt(rub, 10) + ' ₽';
+    document.getElementById('p-uah').textContent = '≈ ' + fmt(rub / r.uah, 10) + ' ₴';
+    document.getElementById('p-kzt').textContent = '≈ ' + fmt(rub / r.kzt, 100) + ' ₸';
+    document.getElementById('p-uzs').textContent = '≈ ' + fmt(rub / r.uzs, 1000) + ' сум';
+    document.getElementById('p-eur').textContent = '≈ ' + fmt(rub / r.eur, 1) + ' €';
+  }
+
+  function loadRates(){
+    if(loaded) return Promise.resolve();
+    return fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+      .then(function(res){ return res.json(); })
+      .then(function(d){
+        var v = d.Valute;
+        fill({
+          usd: v.USD.Value / v.USD.Nominal,
+          eur: v.EUR.Value / v.EUR.Nominal,
+          uah: (v.UAH ? (v.UAH.Value / v.UAH.Nominal) : FALLBACK.uah),
+          kzt: (v.KZT ? (v.KZT.Value / v.KZT.Nominal) : FALLBACK.kzt),
+          uzs: (v.UZS ? (v.UZS.Value / v.UZS.Nominal) : FALLBACK.uzs)
+        });
+        loaded = true;
+      })
+      .catch(function(){ fill(FALLBACK); loaded = true; }); // Если ошибка связи, берем резерв
+  }
+
+  document.getElementById('showPrice').addEventListener('click', function(){
+    var panel = document.getElementById('pricePanel');
+    var open = panel.classList.toggle('open');
+    this.textContent = open ? '💱 Скрыть цену в валютах' : '💱 Показать цену в моей валюте';
+    if(open) loadRates();
+  });
+</script>
+
+</body>
+</html>
