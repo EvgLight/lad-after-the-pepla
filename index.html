@@ -313,7 +313,7 @@
       <div class="curwrap">
         <button class="curbtn" id="showPrice" type="button">💱 Показать цену в моей валюте</button>
         <div class="curpanel" id="pricePanel">
-          <div class="row"><span>🇷🇺 Рубли</span><b id="p-rub">…</b></div>
+          <div class="row"><span>🇺🇸 Доллары</span><b id="p-usd">…</b></div>
           <div class="row"><span>🇺🇦 Гривны</span><b id="p-uah">…</b></div>
           <div class="row"><span>🇰🇿 Тенге</span><b id="p-kzt">…</b></div>
           <div class="row"><span>🇺🇿 Сум</span><b id="p-uzs">…</b></div>
@@ -377,19 +377,21 @@
 </footer>
 
 <script>
-  var PRICE_RUB = 1190; // Ваша цена в рублях (базовая)
+  var PRICE_RUB = 1190; // Ваша базовая цена в рублях!
+  
+  // Резервные курсы на случай сбоя связи с банком (стоимость 1 единицы в рублях)
   var FALLBACK = { usd:90, eur:98, uah:2.2, kzt:0.19, uzs:0.0071 }; 
   var loaded = false;
 
   function fmt(n, step){ return (Math.round(n/step)*step).toLocaleString('ru-RU'); }
 
   function fill(r){
-    document.getElementById('p-rub').textContent = fmt(PRICE_RUB, 10) + ' ₽';
+    document.getElementById('p-rub').textContent = fmt(PRICE_RUB, 1) + ' ₽';
+    document.getElementById('p-usd').textContent = '≈ ' + fmt(PRICE_RUB / r.usd, 1) + ' $'; // Считает доллары
+    document.getElementById('p-eur').textContent = '≈ ' + fmt(PRICE_RUB / r.eur, 1) + ' €';
     document.getElementById('p-uah').textContent = '≈ ' + fmt(PRICE_RUB / r.uah, 10) + ' ₴';
     document.getElementById('p-kzt').textContent = '≈ ' + fmt(PRICE_RUB / r.kzt, 100) + ' ₸';
     document.getElementById('p-uzs').textContent = '≈ ' + fmt(PRICE_RUB / r.uzs, 1000) + ' сум';
-    document.getElementById('p-eur').textContent = '≈ ' + fmt(PRICE_RUB / r.eur, 1) + ' €';
-    // Для долларов добавляем элемент, если он вам нужен в конвертере, или просто убираем
   }
 
   function loadRates(){
@@ -407,13 +409,13 @@
         });
         loaded = true;
       })
-      .catch(function(){ fill(FALLBACK); loaded = true; }); 
+      .catch(function(){ fill(FALLBACK); loaded = true; }); // Включает резервные курсы, если ЦБ висит
   }
 
   document.getElementById('showPrice').addEventListener('click', function(){
     var panel = document.getElementById('pricePanel');
     var open = panel.classList.toggle('open');
-    this.textContent = open ? '💱 Скрыть цену в валютах' : '💱 Показать цену в моей валюте';
+    this.textContent = open ? '💱 Скрыть цену в валютах' : '💱 Показать цену в валютах';
     if(open) loadRates();
   });
 </script>
